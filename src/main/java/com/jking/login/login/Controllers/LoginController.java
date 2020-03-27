@@ -25,7 +25,7 @@ public class LoginController {
         User newUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (newUser != null) {
             String token =
-                    Jwts.builder().setSubject(Integer.toString(newUser.getId())).signWith(SignatureAlgorithm.HS256,
+                    Jwts.builder().setSubject(Long.toString(newUser.getId())).signWith(SignatureAlgorithm.HS256,
                             constant.key).compact();
             newUser.setToken(token);
             userRepository.save(newUser);
@@ -34,14 +34,12 @@ public class LoginController {
             return new ResponseEntity<>("Login failed", HttpStatus.OK);
         }
     }
-
-    @Secured({AccountType.ADMIN})
     @PostMapping("/admin")
     public ResponseEntity<String> LoginAdmin(@RequestBody User user) {
         User newUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (newUser != null) {
             String token =
-                    Jwts.builder().setSubject(Integer.toString(newUser.getId())).signWith(SignatureAlgorithm.HS256,
+                    Jwts.builder().setSubject(Long.toString(newUser.getId())).signWith(SignatureAlgorithm.HS256,
                             constant.key).compact();
             newUser.setToken(token);
             userRepository.save(newUser);
@@ -51,13 +49,12 @@ public class LoginController {
         }
     }
 
-    @Secured({AccountType.USER})
     @PostMapping("/user")
     public ResponseEntity<String> LoginUser(@RequestBody User user) {
         User newUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (newUser != null) {
             String token =
-                    Jwts.builder().setSubject(Integer.toString(newUser.getId())).signWith(SignatureAlgorithm.HS256,
+                    Jwts.builder().setSubject(Long.toString(newUser.getId())).signWith(SignatureAlgorithm.HS256,
                             constant.key).compact();
             newUser.setToken(token);
             userRepository.save(newUser);
