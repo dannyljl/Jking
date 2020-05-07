@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Console;
+
 @RestController
 @RequestMapping("/login")
 public class LoginController {
@@ -21,7 +23,8 @@ public class LoginController {
     private IUserRepository userRepository;
 
     @PostMapping
-    public ResponseEntity<String> Login(@RequestBody User user) {
+    public User Login(@RequestBody User user) {
+        System.out.println(user);
         User newUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (newUser != null) {
             String token =
@@ -29,9 +32,10 @@ public class LoginController {
                             constant.key).compact();
             newUser.setToken(token);
             userRepository.save(newUser);
-            return new ResponseEntity<>("Token : " + token + " logged in", HttpStatus.OK);
+            newUser.setPassword(null);
+            return newUser;
         } else {
-            return new ResponseEntity<>("Login failed", HttpStatus.OK);
+            return null;
         }
     }
     @PostMapping("/admin")

@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Register")
+@RequestMapping("/register")
 public class RegisterController {
 
     @Autowired
@@ -15,8 +15,8 @@ public class RegisterController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<String> Register(@RequestBody User user) {
+    public User Register(@RequestBody User user) {
         userRepository.save(user);
-        return new ResponseEntity<>("user : " + user.getUsername() + " registered in", HttpStatus.OK);
+        return user;
     }
 }
