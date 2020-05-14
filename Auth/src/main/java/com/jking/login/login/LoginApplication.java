@@ -32,6 +32,7 @@ public class LoginApplication {
         registrationBean.setFilter(new SpringAuthenFilter(userRepository));
         registrationBean.addUrlPatterns("/token");
         registrationBean.addUrlPatterns("/admin");
+        registrationBean.addUrlPatterns("/authenticate");
         return registrationBean;
     }
 

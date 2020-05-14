@@ -1,21 +1,24 @@
 package com.guild.guild.classes;
 
 
+import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
+@Entity
 public class Guild {
 
-    private List<Long> users;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_guild", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "guild_id"))
+    private Set<User> users;
+
+    @Column(unique = true)
     private String name;
     private int averageScore;
-
-    public List<Long> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<Long> users) {
-        this.users = users;
-    }
 
     public String getName() {
         return name;
