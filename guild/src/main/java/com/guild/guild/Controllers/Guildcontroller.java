@@ -2,6 +2,7 @@ package com.guild.guild.Controllers;
 
 import com.guild.guild.Repository.IGuildRepository;
 import com.guild.guild.classes.Guild;
+import com.guild.guild.classes.GuildReceiver;
 import com.guild.guild.classes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class Guildcontroller {
     }
 
     @PostMapping
-    public Guild CreateGuild(@RequestBody Guild guild){
-          return guildRepository.save(guild);
+    public Guild CreateGuild(@RequestBody GuildReceiver guild){
+          return guildRepository.save(new Guild(guild));
     }
 }

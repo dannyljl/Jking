@@ -1,9 +1,11 @@
 package com.guild.guild.classes;
 
 
+import net.bytebuddy.implementation.bind.annotation.Default;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -14,16 +16,15 @@ public class Guild {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "user_guild", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "guild_id"))
-    private List<User> users;
+    @OneToMany
+    private List<User> users = new ArrayList<User>();
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private User leader;
+    private Long leader;
 
     @Column(unique = true)
     private String name;
-    private int averageScore;
+
+    private int averageScore = 0;
 
     public String getName() {
         return name;
@@ -61,14 +62,20 @@ public class Guild {
         this.users = users;
     }
 
-    public User getLeader() {
+    public Long getLeader() {
         return leader;
     }
 
-    public void setLeader(User leader) {
+    public void setLeader(Long leader) {
         this.leader = leader;
     }
 
     public Guild() {
+    }
+
+    public Guild(GuildReceiver guildReceiver){
+        this.addUser(guildReceiver.getLeader());
+        this.leader = guildReceiver.getLeader().getId();
+        this.name = guildReceiver.getName();
     }
 }

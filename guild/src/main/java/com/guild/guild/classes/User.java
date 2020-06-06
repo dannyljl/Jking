@@ -3,6 +3,7 @@ package com.guild.guild.classes;
 import com.guild.guild.server.AccountType;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -16,6 +17,18 @@ public class User {
     private String lastName;
     private String token;
     private AccountType accountType = AccountType.USER;
+
+    @ManyToOne
+    private Guild guild;
+
+
+    public Guild getGuild() {
+        return guild;
+    }
+
+    public void setGuild(Guild guild) {
+        this.guild = guild;
+    }
 
     public String getUsername() {
         return username;
