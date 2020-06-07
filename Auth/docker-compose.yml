@@ -17,3 +17,11 @@ services:
       # Where our data will be persisted
     expose:
       - '3306'
+
+  message-broker:
+    image: rabbitmq:3.8-management
+    hostname: message-broker
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"

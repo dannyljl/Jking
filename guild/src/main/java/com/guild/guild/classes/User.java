@@ -3,6 +3,7 @@ package com.guild.guild.classes;
 import com.guild.guild.server.AccountType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity

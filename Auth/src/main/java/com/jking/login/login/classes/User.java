@@ -3,6 +3,7 @@ package com.jking.login.login.classes;
 import Server.AccountType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 public class User {
