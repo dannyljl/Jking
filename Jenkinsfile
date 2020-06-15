@@ -30,21 +30,19 @@ pipeline {
 
 		stage('Docker Build') {
 			steps {
-			    sh 'WEB_IMAGE_NAME=${ACR_LOGINSERVER}/jkingcontainterregistry01/jking-auth:kube${BUILD_NUMBER}'
-				sh 'docker build -t $WEB_IMAGE_NAME ./authentication'
+				sh 'docker build -t jkingcontainterregistry01/jking-auth:kube ./authentication'
 			}
 		}
 
 		stage('Docker publish') {
 			steps {
 				sh '${ACR_LOGINSERVER} -u ${ACR_ID} -p ${ACR_PASSWORD}'
-				sh 'docker push $WEB_IMAGE_NAME'
+				sh 'docker push jkingcontainterregistry01/jking-auth:kube'
 			}
 		}
 		stage('kubetcl set') {
         			steps {
-        				sh 'WEB_IMAGE_NAME="${ACR_LOGINSERVER}/jkingcontainterregistry01/jking-auth:kube${BUILD_NUMBER}'
-        				sh 'kubectl set image deployment/jking-auth jking-auth=$WEB_IMAGE_NAME --kubeconfig /var/lib/jenkins/config'
+        				sh 'kubectl set image deployment/jking-auth jking-auth=jkingcontainterregistry01/jking-auth:kube --kubeconfig /var/lib/jenkins/config'
         			}
         		}
     }
