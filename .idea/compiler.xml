@@ -12,12 +12,14 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="authentication" target="11" />
       <module name="guild" target="11" />
       <module name="login" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="authentication" options="-parameters" />
       <module name="guild" options="-parameters" />
       <module name="login" options="-parameters" />
     </option>

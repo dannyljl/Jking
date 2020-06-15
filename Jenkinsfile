@@ -24,14 +24,14 @@ pipeline {
 
 		stage('Package') {
 			steps {
-				sh 'mvn -f ./Auth/pom.xml -B -DskipTests package'
+				sh 'mvn -f ./authentication/pom.xml -B -DskipTests package'
 			}
 		}
 
 		stage('Docker Build') {
 			steps {
 			    sh 'WEB_IMAGE_NAME=${ACR_LOGINSERVER}/jkingcontainterregistry01/jking-auth:kube${BUILD_NUMBER}'
-				sh 'docker build -t $WEB_IMAGE_NAME ./Auth'
+				sh 'docker build -t $WEB_IMAGE_NAME ./authentication'
 			}
 		}
 
