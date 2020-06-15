@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jking-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jking-auth
+  template:
+    metadata:
+      labels:
+        app: jking-auth
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+        - name: jking-auth
+          image: jkingcontainterregistry01/jking-auth:v1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          ports:
+            - containerPort: 8080
+              name: jking-auth
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jking-auth
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: jking-auth
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jking-guild
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jking-guild
+  template:
+    metadata:
+      labels:
+        app: jking-guild
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+        - name: jking-guild
+          image: jkingcontainterregistry01/jking-guild:v1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          ports:
+            - containerPort: 8081
+          env:
+            - name: jking-auth
+              value: "jking-auth"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jking-guild
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8081
+  selector:
+    app: jking-guild

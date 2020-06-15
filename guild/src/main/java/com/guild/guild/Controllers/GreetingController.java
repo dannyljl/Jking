@@ -1,45 +1,33 @@
 package com.guild.guild.Controllers;
 
-import com.google.gson.Gson;
-import com.guild.guild.classes.Greeting;
+import com.guild.guild.Repository.IMessageRepository;
+import com.guild.guild.classes.Guild;
 import com.guild.guild.classes.HelloMessage;
 import com.guild.guild.classes.MessageReceiver;
-import com.guild.guild.classes.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.GsonJsonParser;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.*;
-import org.springframework.messaging.Message;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.HtmlUtils;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.net.UnknownServiceException;
-import java.util.Arrays;
 
 @Controller
 public class GreetingController {
 
-   /* RestTemplate restTemplate;
-
     @Autowired
-    public GreetingController(RestTemplateBuilder builder){
-        this.restTemplate = builder
-                .build();
-    }*/
+    private IMessageRepository messageRepository;
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public HelloMessage greeting(MessageReceiver message) throws Exception {
+    @MessageMapping("/hello/{guildName}")
+    @SendTo("/topic/greetings/{guildName}")
+    public HelloMessage greeting(@DestinationVariable String guildName, MessageReceiver message) throws Exception {
+        Guild guild = new Guild();
+        guild.setId(message.getGuildId());
+        guild.setName(message.getGuildName());
         System.out.println(message.toString());
         HelloMessage helloMessage = new HelloMessage();
         helloMessage.setMessageOwner(message.getMessageOwner());
         helloMessage.setMessage(message.getMessage().getMessage());
+        helloMessage.setGuilId(guild);
+        messageRepository.save(helloMessage);
         return helloMessage;
     }
 }

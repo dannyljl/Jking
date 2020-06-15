@@ -13,11 +13,11 @@ public class HelloMessage {
     private Long id;
     private String message;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "owner_id")
     private User messageOwner;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name= "guild_id")
     private Guild guilId;
 

@@ -16,7 +16,7 @@ public class Guild {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @OneToMany(targetEntity = User.class)
     private List<User> users = new ArrayList<User>();
 
     private Long leader;

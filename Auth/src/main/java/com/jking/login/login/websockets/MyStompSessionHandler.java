@@ -34,6 +34,5 @@ public class MyStompSessionHandler implements StompSessionHandler {
     @Override
     public void handleFrame(StompHeaders stompHeaders, Object payload) {
         WebSocketMessage msg = (WebSocketMessage) payload;
-        //logger.info("Received : " + msg.getText()+ " from : " + msg.getFrom());
     }
 }

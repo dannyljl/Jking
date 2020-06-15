@@ -4,6 +4,7 @@ import com.jking.login.login.websockets.MyStompSessionHandler;
 import com.jking.login.login.websockets.WebSocketMessage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.messaging.simp.stomp.StompSessionHandler;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.socket.client.WebSocketClient;
@@ -14,7 +15,7 @@ import org.springframework.web.socket.messaging.WebSocketStompClient;
 @RequestMapping("/Socket")
 public class WebSocketController {
 
-    @PostMapping
+    @SubscribeMapping
     @ResponseBody
     public ResponseEntity<WebSocketMessage> Connect(@RequestBody WebSocketMessage message) {
         WebSocketClient client = new StandardWebSocketClient();

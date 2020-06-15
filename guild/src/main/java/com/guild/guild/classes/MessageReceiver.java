@@ -7,6 +7,10 @@ public class MessageReceiver {
     private HelloMessage message;
     @JsonProperty
     private User messageOwner;
+    @JsonProperty
+    private Long guildId;
+    @JsonProperty
+    private String guildName;
 
     public HelloMessage getMessage() {
         return message;
@@ -22,5 +26,25 @@ public class MessageReceiver {
 
     public void setMessageOwner(User messageOwner) {
         this.messageOwner = messageOwner;
+    }
+
+    public Long getGuildId() {
+        return guildId;
+    }
+
+    public void setGuildId(Long guildId) {
+        this.guildId = guildId;
+    }
+
+    public void setGuild(Long id, String name){
+
+    }
+
+    public String getGuildName() {
+        return guildName;
+    }
+
+    public void setGuildName(String guildName) {
+        this.guildName = guildName;
     }
 }

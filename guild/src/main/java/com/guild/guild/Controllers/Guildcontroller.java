@@ -20,6 +20,11 @@ public class Guildcontroller {
         return guildRepository.findByName(guildName);
     }
 
+    @PostMapping("/user")
+    public Guild getUserGuild(@RequestBody User user){
+        return guildRepository.findByUsers_Id(user.getId());
+    }
+
     @PostMapping("/{guildName}")
     public Guild joinGuild(@RequestBody User user, @PathVariable String guildName){
         Guild guild = guildRepository.findByName(guildName);
