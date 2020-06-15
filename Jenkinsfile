@@ -24,7 +24,7 @@ pipeline {
 
 		stage('Package') {
 			steps {
-				sh 'mvn -f ./face/pom.xml -B -DskipTests package'
+				sh 'mvn -f ./Auth/pom.xml -B -DskipTests package'
 			}
 		}
 
