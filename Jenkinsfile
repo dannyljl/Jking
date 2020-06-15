@@ -37,7 +37,7 @@ pipeline {
 		stage('Docker publish') {
 			steps {
 			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'acr-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]){
-				    sh 'docker login -u $USERNAME -p $PASSWORD'
+				    sh 'docker login jkingcontainterregistry01 -u $USERNAME -p $PASSWORD'
 				    sh 'docker push jkingcontainterregistry01/jking-auth:kube'
 				}
 			}
