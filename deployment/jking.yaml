@@ -25,7 +25,7 @@ spec:
               cpu: 250m
               memory: 256Mi
           ports:
-            - containerPort: 8080
+            - containerPort: 8082
               name: jking-auth
 ---
 apiVersion: v1
@@ -34,7 +34,7 @@ metadata:
   name: jking-auth
 spec:
   ports:
-    - port: 8080
+    - port: 8082
   selector:
     app: jking-auth
 ---
