@@ -30,7 +30,7 @@ pipeline {
 
 		stage('Docker Build') {
 			steps {
-				sh 'docker build -t jkingcontainterregistry01/jking-auth:kube ./authentication'
+				sh 'docker build -t jkingcontainterregistry01.azurecr.io/jking-auth:kube ./authentication'
 			}
 		}
 
@@ -38,7 +38,7 @@ pipeline {
 			steps {
 			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'acr-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]){
 				    sh 'docker login jkingcontainterregistry01.azurecr.io -u $USERNAME -p $PASSWORD'
-				    sh 'docker push jkingcontainterregistry01/jking-auth:kube'
+				    sh 'docker push jkingcontainterregistry01.azurecr.io/jking-auth:kube'
 				}
 			}
 		}
