@@ -45,6 +45,7 @@ pipeline {
 		stage('kubetcl set') {
         			steps {
         				sh 'kubectl set image deployment/jking-auth jking-auth=jkingcontainterregistry01.azurecr.io/jking-auth:kube --kubeconfig /home/danny/.kube/config'
+        				sh 'kubectl set image deployment/jking-guild jking-guild=jkingcontainterregistry01.azurecr.io/jking-guild:kube --kubeconfig /home/danny/.kube/config'
         			}
         		}
     }
