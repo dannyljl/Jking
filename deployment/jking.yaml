@@ -100,17 +100,10 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: message-broker
-          image: rabbitmq:3.8-management
-          resources:
-            requests:
-              cpu: 1000m
-              memory: 2Gi
-            limits:
-              cpu: 1000m
-              memory: 2Gi
+          image: jkingcontainterregistry01.azurecr.io/jking-auth:v1
           ports:
             - containerPort: 5672
-            - containerPort: 15672
+              name: message-broker
 ---
 apiVersion: v1
 kind: Service
@@ -120,9 +113,10 @@ spec:
   type: LoadBalancer
   ports:
     - port: 5672
-    - port: 15672
   selector:
     app: message-broker
+---
+
 ---
 apiVersion: apps/v1
 kind: Deployment
