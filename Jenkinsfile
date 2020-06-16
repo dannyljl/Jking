@@ -25,12 +25,14 @@ pipeline {
 		stage('Package') {
 			steps {
 				sh 'mvn -f ./authentication/pom.xml -B -DskipTests package'
+				sh 'mvn -f ./guild/pom.xml -B -DskipTests package'
 			}
 		}
 
 		stage('Docker Build') {
 			steps {
 				sh 'docker build -t jkingcontainterregistry01.azurecr.io/jking-auth:kube ./authentication'
+				sh 'docker build -t jkingcontainterregistry01.azurecr.io/jking-guild:kube ./guild'
 			}
 		}
 
@@ -39,6 +41,7 @@ pipeline {
 			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'acr-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]){
 				    sh 'docker login jkingcontainterregistry01.azurecr.io -u $USERNAME -p $PASSWORD'
 				    sh 'docker push jkingcontainterregistry01.azurecr.io/jking-auth:kube'
+				    sh 'docker push jkingcontainterregistry01.azurecr.io/jking-guild:kube'
 				}
 			}
 		}
