@@ -100,7 +100,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: message-broker
-          image: jkingcontainterregistry01.azurecr.io/jking-auth:v1
+          image: jkingcontainterregistry01.azurecr.io/jking-auth:kube
           ports:
             - containerPort: 5672
               name: message-broker
@@ -136,7 +136,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: jking-auth
-          image: jkingcontainterregistry01.azurecr.io/jking-auth:v1
+          image: jkingcontainterregistry01.azurecr.io/jking-auth:kube
           resources:
             requests:
               cpu: 100m
@@ -177,7 +177,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: jking-guild
-          image: jkingcontainterregistry01.azurecr.io/jking-guild:v1
+          image: jkingcontainterregistry01.azurecr.io/jking-guild:kube
           resources:
             requests:
               cpu: 100m
