@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class Testcontroller {
 
-    @GetMapping()
+    @GetMapping
     public String TestService(){
         return "connection yes";
     }

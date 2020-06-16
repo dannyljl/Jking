@@ -22,6 +22,11 @@ public class LoginController {
     @Autowired
     private IUserRepository userRepository;
 
+    @GetMapping("/test")
+    public String TestService(){
+        return "connection yes";
+    }
+
     @PostMapping
     public User Login(@RequestBody User user) {
         System.out.println(user);
