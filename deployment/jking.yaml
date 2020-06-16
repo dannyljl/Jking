@@ -132,11 +132,13 @@ spec:
       labels:
         app: jking-auth
     spec:
+      terminationGracePeriodSeconds: 30
       nodeSelector:
         "beta.kubernetes.io/os": linux
       containers:
         - name: jking-auth
           image: jkingcontainterregistry01.azurecr.io/jking-auth:kube
+          imagePullPolicy: "Always"
           resources:
             requests:
               cpu: 100m
@@ -173,11 +175,13 @@ spec:
       labels:
         app: jking-guild
     spec:
+      terminationGracePeriodSeconds: 30
       nodeSelector:
         "beta.kubernetes.io/os": linux
       containers:
         - name: jking-guild
           image: jkingcontainterregistry01.azurecr.io/jking-guild:kube
+          imagePullPolicy: "Always"
           resources:
             requests:
               cpu: 100m
