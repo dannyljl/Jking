@@ -27,6 +27,11 @@ public class LoginController {
         return "connection yes";
     }
 
+    @GetMapping("/newtest")
+    public String newtest(){
+        return "connection yes";
+    }
+
     @PostMapping
     public User Login(@RequestBody User user) {
         System.out.println(user);
