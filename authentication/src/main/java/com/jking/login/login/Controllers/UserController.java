@@ -24,7 +24,7 @@ public class UserController {
     @Value("${jking.rabbitmq.routingkey}")
     private String routingkey;
 
-    @PutMapping
+    @PostMapping
     public User updateUser(@RequestBody User user){
         User savedUser = userRepository.save(user);
         savedUser.setPassword("");
