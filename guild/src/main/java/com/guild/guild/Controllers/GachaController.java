@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/gacha")
 public class GachaController {
 
-    //gacha
+    //gacha rng
     @GetMapping("/{maxNumber}")
     public String getResult(@PathVariable String maxNumber){
         RestTemplate restTemplate = new RestTemplate();
