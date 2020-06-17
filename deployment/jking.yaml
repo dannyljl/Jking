@@ -100,7 +100,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: message-broker
-          image: jkingcontainterregistry01.azurecr.io/jking-auth:kube
+          image: rabbitmq:3.8-management
           ports:
             - containerPort: 5672
               name: message-broker
@@ -115,8 +115,6 @@ spec:
     - port: 5672
   selector:
     app: message-broker
----
-
 ---
 apiVersion: apps/v1
 kind: Deployment

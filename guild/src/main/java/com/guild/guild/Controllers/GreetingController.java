@@ -27,7 +27,7 @@ public class GreetingController {
         helloMessage.setMessageOwner(message.getMessageOwner());
         helloMessage.setMessage(message.getMessage().getMessage());
         helloMessage.setGuilId(guild);
-        messageRepository.save(helloMessage);
+//        messageRepository.save(helloMessage);
         return helloMessage;
     }
 }
