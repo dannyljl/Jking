@@ -22,6 +22,11 @@ public class LoginController {
     @Autowired
     private IUserRepository userRepository;
 
+    @GetMapping("/test")
+    public String test(){
+        return "connection yes";
+    }
+
     //login
     @PostMapping
     public User Login(@RequestBody User user) {
