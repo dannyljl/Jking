@@ -24,8 +24,8 @@ pipeline {
 
 		stage('Package') {
 			steps {
-				sh 'mvn -f ./authentication/pom.xml -B -DskipTests package'
-				sh 'mvn -f ./guild/pom.xml -B -DskipTests package'
+				sh 'mvn -f ./authentication/pom.xml -B package'
+				sh 'mvn -f ./guild/pom.xml -B package'
 			}
 		}
 
