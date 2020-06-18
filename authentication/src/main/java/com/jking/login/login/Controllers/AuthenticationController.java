@@ -1,10 +1,6 @@
 package com.jking.login.login.Controllers;
-
-import SecretJWTKey.constant;
 import com.jking.login.login.Repository.IUserRepository;
 import com.jking.login.login.classes.User;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

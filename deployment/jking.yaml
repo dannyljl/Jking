@@ -203,81 +203,83 @@ spec:
     - port: 8081
   selector:
     app: jking-guild
-#apiVersion: extensions/v1beta1
-#kind: Deployment
-#metadata:
-#  name: sonar
-#spec:
-#  replicas: 1
-#  template:
-#    metadata:
-#      name: sonar
-#      labels:
-#        name: sonar
-#    spec:
-#      containers:
-#        - image: sonarqube:latest
-#          args:
-#            - -Dsonar.web.context=/sonar
-#          name: sonar
-#          env:
-#            - name: SONARQUBE_JDBC_PASSWORD
-#              value: password
-#            - name: SONARQUBE_JDBC_URL
-#              value: jdbc:postgresql://sonar-postgres:5432/sonar
-#          ports:
-#            - containerPort: 9000
-#              name: sonar
-#---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  labels:
-#    name: sonar
-#  name: sonar
-#spec:
-#  ports:
-#    - port: 80
-#      targetPort: 9000
-#      name: sonarport
-#  selector:
-#    name: sonar
-#  type: LoadBalancer
-#---
-#apiVersion: extensions/v1beta1
-#kind: Deployment
-#metadata:
-#  name: sonar-postgres
-#spec:
-#  replicas: 1
-#  template:
-#    metadata:
-#      name: sonar-postgres
-#      labels:
-#        name: sonar-postgres
-#    spec:
-#      containers:
-#        - image: postgres:9.5.3
-#          name: sonar-postgres
-#          env:
-#            - name: POSTGRES_PASSWORD
-#              value: password
-#            - name: POSTGRES_USER
-#              value: sonar
-#          ports:
-#            - containerPort: 5432
-#              name: postgresport
-#---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  labels:
-#    name: sonar-postgres
-#  name: sonar-postgres
-#spec:
-#  ports:
-#    - port: 5432
-#  selector:
-#    name: sonar-postgres
-#---
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sonar
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: sonar
+      labels:
+        name: sonar
+    spec:
+      containers:
+        - image: sonarqube:latest
+          command: ["wget"]
+          args: ["-O", "/etc/sysctl.d/60-elasticsearch.conf", "https://www.dropbox.com/s/5kelvpq7vo43jmb/60-elasticsearch.conf?dl=1"]
+          name: sonar
+          env:
+            - name: SONARQUBE_JDBC_PASSWORD
+              value: password
+            - name: SONARQUBE_JDBC_URL
+              value: jdbc:postgresql://sonar-postgres:5432/sonar
+          ports:
+            - containerPort: 9000
+              name: sonar
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: sonar
+  name: sonar
+spec:
+  ports:
+    - port: 80
+      targetPort: 9000
+      name: sonarport
+  selector:
+    name: sonar
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sonar-postgres
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: sonar-postgres
+      labels:
+        name: sonar-postgres
+    spec:
+      containers:
+        - image: postgres:9.5.3
+          name: sonar-postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              value: password
+            - name: POSTGRES_USER
+              value: sonar
+          ports:
+            - containerPort: 5432
+              name: postgresport
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: sonar-postgres
+  name: sonar-postgres
+spec:
+  ports:
+    - port: 5432
+  selector:
+    name: sonar-postgres
+---
 
