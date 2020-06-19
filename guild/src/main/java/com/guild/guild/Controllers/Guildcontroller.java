@@ -1,9 +1,9 @@
 package com.guild.guild.Controllers;
 
 import com.guild.guild.Repository.IGuildRepository;
+import com.guild.guild.classes.User;
 import com.guild.guild.classes.Guild;
 import com.guild.guild.classes.GuildReceiver;
-import com.guild.guild.classes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +16,7 @@ public class Guildcontroller {
     private IGuildRepository guildRepository;
 
     @GetMapping("/{guildName}")
-    public Guild getGuild(@PathVariable String guildName){
+    public Guild getGuild(@RequestHeader("Authorization") String token , @PathVariable String guildName){
         return guildRepository.findByName(guildName);
     }
 

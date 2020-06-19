@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Jking.iml" filepath="$PROJECT_DIR$/.idea/Jking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/authorization-server/authorization-server.iml" filepath="$PROJECT_DIR$/authorization-server/authorization-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/guild/guild.iml" filepath="$PROJECT_DIR$/guild/guild.iml" />
       <module fileurl="file://$PROJECT_DIR$/authentication/login.iml" filepath="$PROJECT_DIR$/authentication/login.iml" />
     </modules>

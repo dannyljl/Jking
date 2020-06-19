@@ -1,7 +1,5 @@
 package com.guild.guild.classes;
 
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 public class GuildReceiver {

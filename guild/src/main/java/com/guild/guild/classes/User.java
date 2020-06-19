@@ -17,7 +17,6 @@ public class User {
     private String firstName;
     private String lastName;
     private String token;
-    private AccountType accountType = AccountType.USER;
 
     @ManyToOne
     private Guild guild;
@@ -53,14 +52,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
     }
 
     public String getFirstName() {

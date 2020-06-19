@@ -31,7 +31,7 @@ pipeline {
 
 		stage('Docker Build') {
 			steps {
-				sh 'docker build -t jkingcontainterregistry01.azurecr.io/jking-auth:kube${BUILD_NUMBER} ./authentication'
+				sh 'docker build -t jkingcontainterregistry01.azurecr.io/jking-auth:kube${BUILD_NUMBER} ./authentication-server'
 				sh 'docker build -t jkingcontainterregistry01.azurecr.io/jking-guild:kube${BUILD_NUMBER} ./guild'
 			}
 		}

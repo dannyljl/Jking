@@ -1,9 +1,6 @@
 package com.guild.guild.classes;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 public class HelloMessage {

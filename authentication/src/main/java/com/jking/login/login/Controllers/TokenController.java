@@ -14,7 +14,7 @@ public class TokenController {
     @Autowired
     private IUserRepository userRepository;
 
-    @GetMapping
+    @PostMapping
     public ResponseEntity<String> Login() {
         return new ResponseEntity<>("Nice Token", HttpStatus.OK);
     }

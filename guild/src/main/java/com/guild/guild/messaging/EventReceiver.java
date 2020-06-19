@@ -20,7 +20,7 @@ public class EventReceiver {
     public void receive(String userjson) {
         Gson gson = new Gson();
         System.out.println("received the event!");
-        log.info("Received event in service document generation: {}", userjson);
+        log.info("Received event: {}", userjson);
         userRepository.save(gson.fromJson(userjson, User.class));
     }
 }
