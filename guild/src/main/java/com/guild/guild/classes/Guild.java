@@ -12,11 +12,6 @@ public class Guild {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(targetEntity = User.class)
-    private List<User> users = new ArrayList<User>();
-
-    private Long leader;
-
     @Column(unique = true)
     private String name;
 
@@ -38,10 +33,6 @@ public class Guild {
         this.averageScore = averageScore;
     }
 
-    public void addUser(User user){
-        users.add(user);
-    }
-
     public Long getId() {
         return id;
     }
@@ -50,28 +41,10 @@ public class Guild {
         this.id = id;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public Long getLeader() {
-        return leader;
-    }
-
-    public void setLeader(Long leader) {
-        this.leader = leader;
-    }
-
     public Guild() {
     }
 
     public Guild(GuildReceiver guildReceiver){
-        this.addUser(guildReceiver.getLeader());
-        this.leader = guildReceiver.getLeader().getId();
         this.name = guildReceiver.getName();
     }
 }

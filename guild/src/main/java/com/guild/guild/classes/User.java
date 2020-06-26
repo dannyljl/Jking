@@ -16,7 +16,8 @@ public class User {
     private String username;
     private String firstName;
     private String lastName;
-    private String token;
+
+    private boolean guildLeader = false;
 
     @ManyToOne
     private Guild guild;
@@ -36,14 +37,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public Long getId() {
@@ -71,6 +64,14 @@ public class User {
     }
 
     public User() {
+    }
+
+    public boolean isGuildLeader() {
+        return guildLeader;
+    }
+
+    public void setGuildLeader(boolean guildLeader) {
+        this.guildLeader = guildLeader;
     }
 
     public User(String username) {

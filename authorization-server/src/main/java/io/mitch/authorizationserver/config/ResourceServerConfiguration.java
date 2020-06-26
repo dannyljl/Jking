@@ -47,26 +47,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .permitAll().anyRequest().authenticated();
     }
 
-//    @Bean
-//    public DefaultTokenServices tokenServices(final TokenStore tokenStore) {
-//        DefaultTokenServices tokenServices = new DefaultTokenServices();
-//        tokenServices.setTokenStore(tokenStore);
-//        tokenServices.setAccessTokenValiditySeconds(0);
-//        return tokenServices;
-//    }
-
-//    @Bean
-//    public TokenStore tokenStore() {
-//           return new JwtTokenStore(jwtAccessTokenConverter());
-//    }
-
-//    @Bean
-//    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//        converter.setVerifierKey(getPublicKeyAsString());
-//        return converter;
-//    }
-
     private String getPublicKeyAsString() {
         try {
             return IOUtils.toString(securityProperties.getJwt().getPublicKey().getInputStream(), UTF_8);

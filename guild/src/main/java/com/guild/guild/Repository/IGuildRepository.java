@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IGuildRepository extends JpaRepository<Guild, Long> {
     Guild findByName(String name);
-    Guild findByUsers_Id(Long id);
 }
