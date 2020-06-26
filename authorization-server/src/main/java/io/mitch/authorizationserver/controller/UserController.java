@@ -116,11 +116,6 @@ public class UserController {
         return principal.getName();
     }
 
-    @GetMapping("/findMe")
-    public String findMe(Principal principal){
-        return "";// ((Role)applicationUserRepository.findByUsername(principal.getName()).getRoles().toArray()[0]).getRoleName();
-    }
-
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/okadmin")
     public String okadmin(Principal principal){
