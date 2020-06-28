@@ -110,7 +110,6 @@ public class UserController {
         return principal.getName();
     }
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/OKSecured")
     public String OKSec(Principal principal){
         return principal.getName();
