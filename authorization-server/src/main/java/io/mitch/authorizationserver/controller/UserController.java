@@ -52,21 +52,16 @@ public class UserController {
     public UsersEntity signUp(@RequestBody UsersEntity user) {
         System.out.println(user.getUsername());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        System.out.println("not broken 1");
         user.setAccountNonExpired(true);
         user.setCredentialsNonExpired(true);
         user.setEnabled(true);
         HashSet<AuthoritiesEntity> set = new HashSet<>();
         set.add(new AuthoritiesEntity(user,Authority.ROLE_ADMIN));
         user.setAuthorities(set);
-        System.out.println("not broken 2");
         user = applicationUserRepository.save(user);
-        System.out.println("not broken 3");
         user.setPassword("");
-        System.out.println("probably breaks here");
 
         rabbitTemplate.convertAndSend(exchange,routingkey,new AngularUser(user));
-        System.out.println("nop");
         return user;
     }
 
