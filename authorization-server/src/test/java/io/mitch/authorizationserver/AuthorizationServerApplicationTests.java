@@ -42,20 +42,6 @@ public class AuthorizationServerApplicationTests {
 	}
 
 	@Test
-	public void signUp(){
-		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("username", "TestUser21");
-		parameters.put("password", "TestPass21");
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-		//HttpEntity<MultiValueMap<String,String>> request = new HttpEntity<MultiValueMap<String, String>>(parameters,headers);
-		ResponseEntity<String> response = restTemplate.postForEntity("/users/test-sign-up",parameters,String.class);
-		Assert.assertEquals(response.getStatusCode(),(HttpStatus.OK));
-		UsersEntity user = usersDao.findByUsername("TestUser21");
-		Assert.assertNotEquals(user,null);
-	}
-
-	@Test
 	public void signIn(){
 		//Making the User
 		HashSet<AuthoritiesEntity> set = new HashSet<>();
@@ -120,7 +106,7 @@ public class AuthorizationServerApplicationTests {
 		headers2.add("Authorization","Bearer " + response.getBody().getAccess_token());
 		HttpEntity entity = new HttpEntity(headers2);
 		ResponseEntity<String> response2 = restTemplate.exchange("/users/OKSecured",HttpMethod.GET,entity,String.class);
-		Assert.assertEquals(HttpStatus.FORBIDDEN,response2.getStatusCode());
+		Assert.assertEquals(HttpStatus.UNAUTHORIZED,response2.getStatusCode());
 
 
 	}
