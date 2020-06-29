@@ -123,4 +123,15 @@ public class UsersEntity {
         this.username = angularUser.getUsername();
         this.password = angularUser.getPassword();
     }
+
+    public UsersEntity(String password, String username, Set<AuthoritiesEntity> authorities) {
+        this.password = password;
+        this.username = username;
+        this.authorities = authorities;
+        accountNonExpired =true;
+        accountNonLocked = true;
+        enabled =true;
+        credentialsNonExpired = true;
+    }
+
 }

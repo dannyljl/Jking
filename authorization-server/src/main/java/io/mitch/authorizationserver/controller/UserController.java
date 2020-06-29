@@ -66,6 +66,22 @@ public class UserController {
         return user;
     }
 
+    @PostMapping("/test-sign-up")
+    public UsersEntity testSignUp(@RequestBody AngularUser angularUser) {
+        UsersEntity user = new UsersEntity(angularUser);
+        System.out.println(user.getUsername());
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setAccountNonExpired(true);
+        user.setCredentialsNonExpired(true);
+        user.setEnabled(true);
+        HashSet<AuthoritiesEntity> set = new HashSet<>();
+        set.add(new AuthoritiesEntity(user,Authority.ROLE_ADMIN));
+        user.setAuthorities(set);
+        user = applicationUserRepository.save(user);
+        user.setPassword("");
+        return user;
+    }
+
     @PostMapping("/login")
     public AngularUser login(@RequestBody AngularUser usersEntity){
         RestTemplate template = new RestTemplate();
@@ -103,19 +119,19 @@ public class UserController {
         return httpHeaders;
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/OK")
     public String OK(Principal principal){
         return principal.getName();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/OKSecured")
     public String OKSec(Principal principal){
         return principal.getName();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/okadmin")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/okuser")
     public String okadmin(Principal principal){
         return principal.getName();
     }
