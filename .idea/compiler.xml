@@ -16,6 +16,7 @@
       <module name="authentication" target="11" />
       <module name="authorization-server" target="11" />
       <module name="guild" target="11" />
+      <module name="Jking" target="1.5" />
       <module name="login" target="11" />
     </bytecodeTargetLevel>
   </component>

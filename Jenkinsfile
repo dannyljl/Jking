@@ -24,10 +24,8 @@ pipeline {
 
 		stage('SonarCloud package') {
 			steps {
-				sh 'mvn -f ./authorization-server/pom.xml verify sonar:sonar'
-				sh 'mvn -f ./authorization-server/pom.xml clean package sonar:sonar'
-				sh 'mvn -f ./guild/pom.xml verify sonar:sonar'
-                sh 'mvn -f ./guild/pom.xml clean package sonar:sonar'
+				sh 'mvn -f ./pom.xml verify sonar:sonar'
+                sh 'mvn -f ./pom.xml clean package sonar:sonar'
 			}
 		}
 

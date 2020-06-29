@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/guild/pom.xml" />
         <option value="$PROJECT_DIR$/authentication/pom.xml" />
         <option value="$PROJECT_DIR$/authorization-server/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
