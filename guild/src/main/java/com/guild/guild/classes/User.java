@@ -66,6 +66,15 @@ public class User {
     public User() {
     }
 
+    public User(AngularUser angularUser){
+        this.id = angularUser.getId();
+        this.firstName = angularUser.getFirstName();
+        this.lastName = angularUser.getLastName();
+        this.username = angularUser.getLastName();
+        this.guildLeader = angularUser.isGuildLeader();
+        this.guild = angularUser.getGuild();
+    }
+
     public boolean isGuildLeader() {
         return guildLeader;
     }

@@ -1,4 +1,4 @@
-package io.mitch.authorizationserver.entity;
+package com.guild.guild.classes;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
@@ -7,29 +7,21 @@ public class AngularUser {
     private String lastName;
     private String firstName;
     private String username;
-    private String password;
 
     private boolean delete = false;
 
-    @JsonProperty
-    private String access_token;
+    private boolean guildLeader = false;
+
+    private Guild guild;
 
     public AngularUser() {
     }
 
-    public AngularUser(UsersEntity usersEntity){
+    public AngularUser(User usersEntity){
         this.id = usersEntity.getId();
         this.firstName = usersEntity.getFirstName();
         this.lastName = usersEntity.getLastName();
         this.username = usersEntity.getUsername();
-    }
-
-    public AngularUser(UsersEntity usersEntity, String token){
-        this.id = usersEntity.getId();
-        this.firstName = usersEntity.getFirstName();
-        this.lastName = usersEntity.getLastName();
-        this.username = usersEntity.getUsername();
-        this.access_token = token;
     }
 
 
@@ -48,22 +40,6 @@ public class AngularUser {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAccess_token() {
-        return access_token;
-    }
-
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
     }
 
     public String getLastName() {
@@ -88,5 +64,25 @@ public class AngularUser {
 
     public void setDelete(boolean delete) {
         this.delete = delete;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public boolean isGuildLeader() {
+        return guildLeader;
+    }
+
+    public void setGuildLeader(boolean guildLeader) {
+        this.guildLeader = guildLeader;
+    }
+
+    public Guild getGuild() {
+        return guild;
+    }
+
+    public void setGuild(Guild guild) {
+        this.guild = guild;
     }
 }

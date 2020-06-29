@@ -30,7 +30,7 @@ public class UserInfoController {
     private String routingkey;
 
     @PostMapping("/update")
-    public UsersEntity updateUser(@RequestBody UsersEntity user){
+    public UsersEntity updateUser(@RequestBody AngularUser user){
         UsersEntity realUser = userRepository.findById(user.getId()).get();
         if (user.getFirstName() != null){
             realUser.setFirstName(user.getFirstName());
@@ -48,5 +48,15 @@ public class UserInfoController {
         savedUser.setPassword("");
         rabbitTemplate.convertAndSend(exchange,routingkey,new AngularUser(savedUser));
         return savedUser;
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean deleteUser(@PathVariable Long id){
+        UsersEntity realUser = userRepository.findById(id).get();
+        AngularUser newAngularUser = new AngularUser(realUser);
+        newAngularUser.setDelete(true);
+        rabbitTemplate.convertAndSend(exchange,routingkey,newAngularUser);
+        userRepository.deleteById(newAngularUser.getId());
+        return true;
     }
 }
