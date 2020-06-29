@@ -20,7 +20,9 @@ public class GachaController {
         if(!url.startsWith(urlWhiteListed)){
             throw new IOException();
         }
+        System.out.println("does it come here?");
         String result = restTemplate.getForObject(url, String.class);
+        System.out.println("result is" + result);
         return result;
     }
 }

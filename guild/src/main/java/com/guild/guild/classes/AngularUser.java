@@ -7,11 +7,8 @@ public class AngularUser {
     private String lastName;
     private String firstName;
     private String username;
-
     private boolean delete = false;
-
     private boolean guildLeader = false;
-
     private Guild guild;
 
     public AngularUser() {

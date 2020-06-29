@@ -36,10 +36,6 @@ public class MessageReceiver {
         this.guildId = guildId;
     }
 
-    public void setGuild(Long id, String name){
-
-    }
-
     public String getGuildName() {
         return guildName;
     }

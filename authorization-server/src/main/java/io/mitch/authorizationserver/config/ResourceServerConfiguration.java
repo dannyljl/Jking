@@ -25,8 +25,6 @@ import static org.apache.commons.codec.Charsets.UTF_8;
 @EnableConfigurationProperties(SecurityProperties.class)
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
-    private static final String ROOT_PATTERN = "/**";
-
     private final SecurityProperties securityProperties;
 
     public ResourceServerConfiguration(final SecurityProperties securityProperties) {

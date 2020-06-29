@@ -16,9 +16,7 @@ public class User {
     private String username;
     private String firstName;
     private String lastName;
-
     private boolean guildLeader = false;
-
     @ManyToOne
     private Guild guild;
 
