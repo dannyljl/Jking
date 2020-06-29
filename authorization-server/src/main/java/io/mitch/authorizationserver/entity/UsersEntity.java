@@ -113,6 +113,9 @@ public class UsersEntity {
         this.lastName = lastName;
     }
 
+    public UsersEntity() {
+    }
+
     public UsersEntity(AngularUser angularUser){
         this.id = angularUser.getId();
         this.firstName = angularUser.getFirstName();
