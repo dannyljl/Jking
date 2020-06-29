@@ -51,8 +51,10 @@ public class UserInfoController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteUser(@PathVariable Long id){
-        UsersEntity realUser = userRepository.findById(id).get();
+    public boolean deleteUser(@PathVariable String id){
+        System.out.println("incoming id = " + id);
+        UsersEntity realUser = userRepository.findById(Long.parseLong(id)).get();
+        System.out.println("found user =" + realUser);
         AngularUser newAngularUser = new AngularUser(realUser);
         newAngularUser.setDelete(true);
         rabbitTemplate.convertAndSend(exchange,routingkey,newAngularUser);
