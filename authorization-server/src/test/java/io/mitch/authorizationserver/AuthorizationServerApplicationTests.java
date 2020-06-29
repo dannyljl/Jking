@@ -42,23 +42,6 @@ public class AuthorizationServerApplicationTests {
 	}
 
 	@Test
-	public void signIn(){
-		//Making the User
-		HashSet<AuthoritiesEntity> set = new HashSet<>();
-		UsersEntity user = new UsersEntity(bCryptPasswordEncoder.encode("TestPass21"),"TestUser21",set);
-		set.add(new AuthoritiesEntity(user, Authority.ROLE_ADMIN));
-		usersDao.save(user);
-		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("username", "TestUser21");
-		parameters.put("password", "TestPass21");
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-		UsersEntity test = usersDao.findByUsername("TestUser21");
-		ResponseEntity<TokenResponse> response = restTemplate.postForEntity("/users/login",parameters,TokenResponse.class);
-		Assert.assertNotNull(response.getBody().getAccess_token());
-	}
-
-	@Test
 	public void noToken(){
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization","Bearer " + "");
