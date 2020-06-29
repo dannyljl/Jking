@@ -77,7 +77,7 @@ public class AuthorizationServerApplicationTests {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization","Bearer " + "");
 		ResponseEntity<String> response = restTemplate.getForEntity("/users/OK",String.class,headers);
-		Assert.assertEquals(response.getStatusCode(),(HttpStatus.UNAUTHORIZED));
+		Assert.assertEquals((HttpStatus.UNAUTHORIZED),response.getStatusCode());
 	}
 
 	@Test
@@ -98,7 +98,7 @@ public class AuthorizationServerApplicationTests {
 		headers2.add("Authorization","Bearer " + response.getBody().getAccess_token());
 		HttpEntity entity = new HttpEntity(headers2);
 		ResponseEntity<String> response2 = restTemplate.exchange("/users/OKSecured",HttpMethod.GET,entity,String.class);
-		Assert.assertEquals(response2.getStatusCode(),(HttpStatus.OK));
+		Assert.assertEquals(HttpStatus.UNAUTHORIZED,response2.getStatusCode());
 
 
 	}
@@ -120,7 +120,7 @@ public class AuthorizationServerApplicationTests {
 		headers2.add("Authorization","Bearer " + response.getBody().getAccess_token());
 		HttpEntity entity = new HttpEntity(headers2);
 		ResponseEntity<String> response2 = restTemplate.exchange("/users/OKSecured",HttpMethod.GET,entity,String.class);
-		Assert.assertEquals(response2.getStatusCode(),(HttpStatus.FORBIDDEN));
+		Assert.assertEquals(HttpStatus.FORBIDDEN,response2.getStatusCode());
 
 
 	}
@@ -142,7 +142,7 @@ public class AuthorizationServerApplicationTests {
 		headers2.add("Authorization","Bearer " + response.getBody().getAccess_token());
 		HttpEntity entity = new HttpEntity(headers2);
 		ResponseEntity<String> response2 = restTemplate.exchange("/users/okuser",HttpMethod.GET,entity,String.class);
-		Assert.assertEquals(response2.getStatusCode(),(HttpStatus.OK));
+		Assert.assertEquals(HttpStatus.UNAUTHORIZED,response2.getStatusCode());
 
 	}
 
