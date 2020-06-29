@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/user")
@@ -31,7 +33,11 @@ public class UserInfoController {
 
     @PostMapping("/update")
     public UsersEntity updateUser(@RequestBody AngularUser user){
-        UsersEntity realUser = userRepository.findById(user.getId()).get();
+        Optional<UsersEntity> value = userRepository.findById(user.getId());
+        if (!value.isPresent()){
+            return null;
+        }
+        UsersEntity realUser = value.get();
         if (user.getFirstName() != null){
             realUser.setFirstName(user.getFirstName());
         }
@@ -51,10 +57,13 @@ public class UserInfoController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteUser(@PathVariable String id){
-        System.out.println("incoming id = " + id);
-        UsersEntity realUser = userRepository.findById(Long.parseLong(id)).get();
-        System.out.println("found user =" + realUser);
+    public boolean deleteUser(@PathVariable Long id){
+        System.out.println("id =" + id);
+        Optional<UsersEntity> value = userRepository.findById(id);
+        if (!value.isPresent()){
+            return false;
+        }
+        UsersEntity realUser = value.get();
         AngularUser newAngularUser = new AngularUser(realUser);
         newAngularUser.setDelete(true);
         rabbitTemplate.convertAndSend(exchange,routingkey,newAngularUser);

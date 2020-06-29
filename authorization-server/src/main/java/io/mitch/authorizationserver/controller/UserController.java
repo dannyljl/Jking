@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.LinkedMultiValueMap;
@@ -25,7 +26,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -95,13 +98,13 @@ public class UserController {
     }
 
     HttpHeaders createHeaders(String username, String password){
-        return new HttpHeaders() {{
-            String auth = username + ":" + password;
-            byte[] encodedAuth = Base64.encodeBase64(
-                    auth.getBytes(Charset.forName("US-ASCII")) );
-            String authHeader = "Basic " + new String( encodedAuth );
-            set( "Authorization", authHeader );
-        }};
+        String auth = username + ":" + password;
+        byte[] encodedAuth = Base64.encodeBase64(
+                auth.getBytes(Charset.forName("US-ASCII")) );
+        String authHeader = "Basic " + new String( encodedAuth );
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Authorization",authHeader);
+        return httpHeaders;
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
