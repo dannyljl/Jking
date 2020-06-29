@@ -13,7 +13,7 @@ public class GachaController {
 
     //gacha rng
     @GetMapping("/{maxNumber}")
-    public String getResult(@PathVariable Long maxNumber) throws IOException {
+    public String getResult(@PathVariable String maxNumber) throws IOException {
         String url = "https://jking-functions-20200617112822840.azurewebsites.net/api/gacha?max-number=" + maxNumber;
         RestTemplate restTemplate = new RestTemplate();
         String urlWhiteListed = "https://jking-functions";
