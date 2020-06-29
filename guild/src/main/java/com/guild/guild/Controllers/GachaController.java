@@ -16,9 +16,11 @@ public class GachaController {
     public String getResult(@PathVariable String maxNumber) throws IOException {
         String url = "http://jking-functions-20200617112822840.azurewebsites.net/api/gacha?max-number=" + maxNumber;
         RestTemplate restTemplate = new RestTemplate();
-        System.out.println("does it come here?");
+        String urlWhiteListed = "https://jking-functions";
+        if(!url.startsWith(urlWhiteListed)){
+            throw new IOException();
+        }
         String result = restTemplate.getForObject(url, String.class);
-        System.out.println("result is" + result);
         return result;
     }
 }
