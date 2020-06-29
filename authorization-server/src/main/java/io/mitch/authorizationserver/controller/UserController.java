@@ -49,7 +49,8 @@ public class UserController {
     private String routingkey;
 
     @PostMapping("/sign-up")
-    public UsersEntity signUp(@RequestBody UsersEntity user) {
+    public UsersEntity signUp(@RequestBody AngularUser angularUser) {
+        UsersEntity user = new UsersEntity(angularUser);
         System.out.println(user.getUsername());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setAccountNonExpired(true);
@@ -66,7 +67,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public AngularUser login(@RequestBody UsersEntity usersEntity){
+    public AngularUser login(@RequestBody AngularUser usersEntity){
         RestTemplate template = new RestTemplate();
         HttpHeaders header = createHeaders("clientId","client-secret");
         MultiValueMap<String,String> map = new LinkedMultiValueMap<String,String>();

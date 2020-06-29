@@ -112,4 +112,12 @@ public class UsersEntity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public UsersEntity(AngularUser angularUser){
+        this.id = angularUser.getId();
+        this.firstName = angularUser.getFirstName();
+        this.lastName = angularUser.getLastName();
+        this.username = angularUser.getUsername();
+        this.password = angularUser.getPassword();
+    }
 }
