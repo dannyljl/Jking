@@ -48,6 +48,7 @@ public class UserController {
     @Value("${jking.rabbitmq.routingkey}")
     private String routingkey;
 
+    //signup
     @PostMapping("/sign-up")
     public UsersEntity signUp(@RequestBody AngularUser angularUser) {
         UsersEntity user = new UsersEntity(angularUser);
