@@ -14,6 +14,7 @@ public class User {
 
     @Column(unique = true)
     private String username;
+
     private String firstName;
     private String lastName;
     private boolean guildLeader = false;
@@ -68,7 +69,7 @@ public class User {
         this.id = angularUser.getId();
         this.firstName = angularUser.getFirstName();
         this.lastName = angularUser.getLastName();
-        this.username = angularUser.getLastName();
+        this.username = angularUser.getUsername();
         this.guildLeader = angularUser.isGuildLeader();
         this.guild = angularUser.getGuild();
     }
