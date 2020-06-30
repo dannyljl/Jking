@@ -39,6 +39,7 @@ public class Guildcontroller {
         return userRepository.save(newUser);
     }
 
+    //create guild
     @PostMapping
     public Guild CreateGuild(@RequestBody GuildReceiver guild){
         User guildleader = userRepository.getOne(guild.getLeader().getId());
